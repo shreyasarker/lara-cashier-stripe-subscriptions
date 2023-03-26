@@ -15,6 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    
+                    <p><a href="{{ route('plans') }}">{{ __('See the plans') }}</a></p>
                 </div>
             </div>
         </div>
