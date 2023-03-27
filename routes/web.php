@@ -25,4 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function(){
   Route::get('/plans', [PlanController::class, 'index'])->name('plans');
+  Route::get('/plans/{plan}', [PlanController::class, 'show'])->name('plans.show');
+  Route::post('/subscription', [PlanController::class, 'subscription'])->name('subscription.create');
 });

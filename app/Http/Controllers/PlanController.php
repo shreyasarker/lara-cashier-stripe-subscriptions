@@ -11,4 +11,17 @@ class PlanController extends Controller
       $plans = Plan::query()->get();
       return view('plans', compact('plans'));
     }
+
+    public function show(Plan $plan, Request $request){
+      $intent = auth()->user()->createSetupIntent();
+      return view('subscription', compact('intent', 'plan'));
+    }
+
+    public function subscription(Request $request){
+      $plan = Plan::find($request->plan);
+      $subscriptions = $request->user()->newSubscription($request->plan, $plan->stripe_plan)
+      ->create($request->token);
+
+      return view('subscription_success');
+    }
 }
